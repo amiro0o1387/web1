@@ -27,6 +27,152 @@
          font-size: 45px;
          text-align: right;
         }
+         body {
+      font-family: "Vazirmatn", sans-serif;
+      direction: rtl;
+      background: linear-gradient(120deg, #eef5ff, #f7fcff);
+      color: #222;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0058d6;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #0078ff, #00b7ff);
+      margin: 10px auto 0;
+      border-radius: 4px;
+    }
+
+    /* کارت فهرست مطالب */
+    .toc {
+      background: linear-gradient(90deg, #0078ff10, #00b7ff15);
+      border-right: 4px solid #0078ff;
+      border-radius: 16px;
+      padding: 20px 25px;
+      margin-bottom: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .toc:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .toc h2 {
+      margin-top: 0;
+      color: #0044cc;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc h2::before {
+      content: "📘";
+      font-size: 1.3rem;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding-right: 0;
+      margin: 15px 0 0 0;
+    }
+
+    .toc li {
+      margin: 10px 0;
+      position: relative;
+      padding-right: 25px;
+    }
+
+    .toc li::before {
+      content: "▸";
+      position: absolute;
+      right: 0;
+      color: #00a8ff;
+      font-size: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .toc a {
+      text-decoration: none;
+      color: #0044cc;
+      font-weight: 500;
+      transition: color 0.3s, padding-right 0.3s;
+    }
+
+    .toc a:hover {
+      color: #00a8ff;
+      padding-right: 5px;
+    }
+
+    /* بخش‌های اصلی */
+    section {
+      margin-bottom: 50px;
+      scroll-margin-top: 100px;
+      background: #f9fbff;
+      padding: 25px 20px;
+      border-radius: 14px;
+      border: 1px solid #e0ebff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: transform 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+    }
+
+    h2 {
+      color: #0078ff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2::before {
+      content: "🔹";
+      font-size: 1.2rem;
+    }
+
+    p {
+      line-height: 1.9;
+      text-align: justify;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #666;
+      font-size: 0.9rem;
+    }
     </style>
    
 </head>
@@ -42,25 +188,44 @@ font-size: 50px;
 </b>
 </p>
 <p style="text-align: center;"><img src="programming-language.webp"></p>
+  <div class="container">
+    <h1>📖فهرست مطالب</h1>
+
+    <!-- فهرست مطالب -->
+    <nav class="toc">
+      <h2>فهرست مطالب</h2>
+      <ul>
+        <li><a href="#id1">مقدمه</a></li>
+        <li><a href="#id2">تعریف زبان برنامه نویسی ساده</a></li>
+        <li><a href="#id3">تعریف زبان برنامه نویسی</a></li>
+        <li><a href="#id5">برنامه نویسی چند زبان دارد؟</a></li>
+      </ul>
+    </nav>
   
   <p style="text-align: right;
-  font-size: 50px;" span id="mqdmh">مقدمه</span>
+  font-size: 50px;" span id="mqdmh"></span>
 <p style="text-align: right ;
 font-size: 20px;">
+<section id="id1">
+      <h2>مقدمه</h2>
 .زبان‌های برنامه نویسی ابزارهای اصلی برای برقراری ارتباط با کامپیوترها و دستور دادن به آن‌ها برای انجام وظایف مختلف هستند. در واقع، تمام برنامه‌های نرم‌افزاری، اپلیکیشن‌ها و سیستم‌های پیچیده‌ای که امروزه می‌بینیم، از طریق کدنویسی با زبان‌های برنامه نویسی طراحی و ساخته می‌شوند
 </p>
 <p style="text-align: right;
 font-size: 20px;">
+    <section id="id2">
+      <h2>تعریف زبان برنامه نویسی ساده</h2>
 در ابتدا، کامپیوترها به صورت مستقیم تنها قادر به درک دستورات باینری (صفر و یک) بودند که بسیار پیچیده و دشوار برای انسان‌ها بودند. به همین دلیل، زبان‌هایی طراحی شدند که از نظر ساختاری و دستوری برای برنامه‌نویسان قابل فهم‌تر و راحت‌تر باشند. این زبان‌ها به ما این امکان را می‌دهند که با نوشتن دستورات سطح بالاتر و نزدیک‌تر به زبان طبیعی، به کامپیوتر دستور دهیم.
 </p>
 <h2>
 <p style="text-align: right;
 font-size: 40px;">
+    <section id="id3">
 <span id="tryf_zban_brnamh_nwysy">تعریف زبان برنامه نویسی</span>
 </h2>
 </p>
 <p style="text-align: right;
 font-size: 20px;">
+    <section id="id4">
  برنامه نویسی مجموعه‌ای از قواعد و دستورالعمل‌هاست که برای برقراری ارتباط بین انسان و کامپیوتر به کار می‌رود. این زبان‌ها به برنامه‌نویسان اجازه می‌دهند که الگوریتم‌ها و منطق‌های موردنظر خود را به گونه‌ای بنویسند که کامپیوتر بتواند آن‌ها را پردازش و اجرا کند   
 </p>
 <p style="text-align: right;
@@ -70,7 +235,8 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
 </p>
 <p style="text-align: right;
 font-size: 40px;">
-<span id="brnamh_nwysy_chnd_zban_dard">برنامه نویسی چند زبان دارد؟</span>
+    <section id="id5">
+      <h2>برنامه نویسی چند زبان دارد؟</h2>
 </p>
     <p style="text-align: right;
     font-size: 20px;" data-start="37" data-end="361">تعداد دقیق زبان‌های برنامه نویسی موجود در جهان مشخص نیست و به دلیل تنوع گسترده‌ای که در این حوزه وجود دارد، شمارش دقیق آن‌ها پیچیده است. برخی از منابع تخمین می‌زنند که تعداد زبان‌های برنامه نویسی بین چند صد تا چند هزار متغیر است. این تعداد زیاد به دلیل تولید زبان‌های جدید به‌طور مداوم و همچنین انحلال زبان‌های قدیمی‌تر است.</p>
