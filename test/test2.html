@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>ورود به سایت</title>
+<style>
+body{
+    font-family:"Vazirmatn",sans-serif;
+    background:linear-gradient(135deg,#dff6ff,#ffffff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    width:340px;
+    text-align:center;
+}
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+button{
+    width:90%;
+    padding:10px;
+    background:#00897b;
+    color:white;
+    border:0;
+    border-radius:10px;
+    cursor:pointer;
+}
+button:hover{ background:#00695c; }
+a{ text-decoration:none; color:#00695c; }
+</style>
+</head>
+
+<body>
+<div class="box">
+<h2>ورود 🔐</h2>
+<input type="text" id="user" placeholder="نام کاربری">
+<input type="password" id="pass" placeholder="رمز عبور">
+<button onclick="login()">ورود</button>
+<p style="margin-top:10px">اکانت نداری؟ <a href="test2.html">ثبت نام</a></p>
+<p id="msg" style="color:red;"></p>
+</div>
+
+<script>
+function login(){
+let user = document.getElementById("user").value;
+let pass = document.getElementById("pass").value;
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+let check = users.find(x => x.username === user && x.password === pass);
+
+if(check){
+    localStorage.setItem("loggedInUser", user);
+    window.location.href = "index.html"; 
+}
+else{
+    document.getElementById("msg").innerText = "نام کاربری یا رمز اشتباه است ❌";
+}
+}
+</script>
+
+</body>
+</html>

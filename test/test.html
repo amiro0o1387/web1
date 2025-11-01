@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>سیستم ثبت‌نام و لاگین — نسخه تک‌فایل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#f0f8ff;
+  --accent:#0066cc;
+  --accent-2:#00897b;
+  --card:#ffffff;
+  --muted:#7b8794;
+  --danger:#d32f2f;
+  --glass: rgba(255,255,255,0.65);
+}
+
+/* Reset and base */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:"Vazirmatn",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background: linear-gradient(135deg,#eaf6ff,#ffffff); color:#0b1220; -webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1100px;margin:28px auto;padding:18px}
+
+/* Layout */
+.app {
+  display:grid;
+  grid-template-columns: 420px 1fr;
+  gap:28px;
+  align-items:start;
+  min-height: calc(100vh - 56px);
+}
+@media (max-width:900px){
+  .app{grid-template-columns:1fr;padding:14px}
+}
+
+/* Left card: forms */
+.panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), var(--glass));
+  border-radius:16px;
+  padding:22px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(10,20,40,0.06);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Header */
+.header {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+.logo {
+  width:58px;height:58px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:20px;box-shadow:0 8px 24px rgba(2,6,23,0.08)
+}
+.header h1{margin:0;font-size:18px}
+.header p{margin:0;color:var(--muted);font-size:13px}
+
+/* Tabs */
+.tabs {display:flex;gap:8px;margin:16px 0}
+.tab-btn {
+  background:transparent;border:0;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;color:var(--muted)
+}
+.tab-btn.active{
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:white;box-shadow:0 6px 18px rgba(0,130,140,0.12)
+}
+
+/* Forms */
+.form {display:none}
+.form.active{display:block}
+.field {margin-bottom:12px}
+label{display:block;margin-bottom:6px;font-size:13px;color:var(--muted)}
+.input {
+  width:100%;padding:12px;border-radius:10px;border:1px solid rgba(12,20,30,0.08);font-size:14px;background:white;outline:none
+}
+.input:focus{box-shadow:0 6px 18px rgba(0,120,215,0.06);border-color:rgba(0,120,215,0.15)}
+.row{display:flex;gap:8px}
+.small{font-size:13px;color:var(--muted)}
+
+/* Buttons */
+.btn {
+  display:inline-block;padding:11px 18px;border-radius:10px;border:0;background:var(--accent-2);color:white;font-weight:600;cursor:pointer;width:100%;font-size:15px;
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,120,140,0.12)}
+.btn.ghost{background:transparent;color:var(--accent);border:1px dashed rgba(0,100,200,0.08)}
+.link-muted{color:var(--muted);font-size:13px;margin-top:8px}
+
+/* Strength meter */
+.strength {
+  height:10px;border-radius:8px;background:#f1f5f9;overflow:hidden;margin-top:6px;border:1px solid rgba(0,0,0,0.03)
+}
+.strength > i{display:block;height:100%;width:0;transition:width .28s ease;background:linear-gradient(90deg,#ff7a18,#ffd200)}
+
+.hints{margin-top:8px;font-size:13px;color:var(--muted)}
+
+/* Right content area */
+.main {
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.06);border:1px solid rgba(10,20,40,0.04)
+}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.user-info{display:flex;align-items:center;gap:12px}
+.avatar{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#ffd89b,#19547b);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px}
+.welcome h2{margin:0;font-size:18px}
+.welcome p{margin:0;color:var(--muted);font-size:13px}
+
+/* Profile card */
+.card{background:white;padding:18px;border-radius:12px;border:1px solid rgba(10,20,40,0.03);margin-top:12px}
+.card h3{margin:0 0 8px 0}
+.action-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+
+/* Footer small */
+.footer-small{margin-top:18px;color:var(--muted);font-size:13px}
+
+/* Tiny responsive tweaks */
+@media (max-width:600px){
+  .logo{width:48px;height:48px}
+  .avatar{width:44px;height:44px}
+  .header h1{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="app">
+
+    <!-- LEFT: tabs & forms -->
+    <div class="panel" aria-hidden="false">
+      <div class="header">
+        <div class="logo">PW</div>
+        <div>
+          <h1>سیستم کاربران</h1>
+          <p>ثبت‌نام، ورود و پروفایل </p>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="auth-tabs">
+        <button class="tab-btn active" id="tab-login">ورود</button>
+        <button class="tab-btn" id="tab-register">ثبت‌نام</button>
+        <button class="tab-btn" id="tab-profile" style="margin-left:auto;">پروفایل</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="form-login" class="form active" aria-labelledby="tab-login">
+        <div class="field">
+          <label for="login-user">نام کاربری</label>
+          <input id="login-user" class="input" placeholder="نام کاربری یا ایمیل" />
+        </div>
+        <div class="field">
+          <label for="login-pass">رمز عبور</label>
+          <input id="login-pass" type="password" class="input" placeholder="رمز عبور" />
+        </div>
+        <div class="field">
+          <button class="btn" id="btn-login">ورود</button>
+        </div>
+        <div class="link-muted">
+          <span id="login-msg" style="color:var(--danger)"></span>
+        </div>
+      </div>
+
+      <!-- REGISTER -->
+      <div id="form-register" class="form" aria-labelledby="tab-register">
+        <div class="field">
+          <label for="reg-user">نام کاربری</label>
+          <input id="reg-user" class="input" placeholder="نام کاربری دلخواه" />
+        </div>
+        <div class="field">
+          <label for="reg-pass">رمز عبور</label>
+          <input id="reg-pass" type="password" class="input" placeholder="رمز قوی انتخاب کنید" />
+          <div class="strength" aria-hidden="true"><i id="strength-bar"></i></div>
+        </div>
+        <div class="field">
+          <label for="reg-pass2">تکرار رمز</label>
+          <input id="reg-pass2" type="password" class="input" placeholder="رمز را تکرار کنید" />
+        </div>
+
+        <div class="field">
+          <button class="btn" id="btn-register">ثبت‌نام</button>
+        </div>
+        <div class="hints">
+          <ul style="margin:8px 0;padding-right:18px">
+            <li>رمز حداقل ۸ کاراکتر، شامل حرف و عدد و نماد پیشنهاد می‌شود.</li>
+            <li>نام کاربری تکراری پذیرفته نمی‌شود.</li>
+          </ul>
+          <div id="reg-msg" style="color:var(--danger)"></div>
+        </div>
+      </div>
+
+      <!-- PROFILE EDIT (small quick form for password change) -->
+      <div id="form-profile" class="form" aria-labelledby="tab-profile" style="padding-top:8px">
+        <div class="field">
+          <label>نام کاربری وارد شده:</label>
+          <div id="current-username" class="small" style="font-weight:700;color:var(--accent)"></div>
+        </div>
+        <div class="field">
+          <label for="chg-pass">تغییر رمز (در صورت نیاز)</label>
+          <input id="chg-pass" type="password" class="input" placeholder="رمز جدید — خالی رها کنید اگر نمی‌خواهید" />
+        </div>
+        <div class="field">
+          <button class="btn" id="btn-change-pass">اعمال تغییر رمز</button>
+        </div>
+        <div class="hints">
+          <div id="profile-msg" style="color:var(--danger)"></div>
+          <div style="margin-top:10px" class="small">همچنین می‌توانید به بخش اصلی بروید.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: main content / profile -->
+    <div class="main" id="main-area">
+      <div class="topbar">
+        <div class="user-info">
+          <div class="avatar" id="main-avatar">A</div>
+          <div class="welcome">
+            <h2 id="welcome-title">خوش آمدید!</h2>
+            <p id="welcome-sub">برای ادامه لطفاً وارد شوید یا ثبت‌نام کنید.</p>
+          </div>
+        </div>
+        <div>
+          <button id="open-dashboard" class="btn ghost" style="width:auto;padding:10px 14px">باز کردن صفحه</button>
+        </div>
+      </div>
+
+      <div class="card" id="dashboard-card">
+        <h3>معرفی ماشین‌های برنامه‌نویسی</h3>
+        <p class="small">زبان‌های برنامه نویسی ابزارهای اصلی برای برقراری ارتباط با کامپیوترها و دستور دادن به آن‌ها برای انجام وظایف مختلف هستند. در واقع، تمام برنامه‌های نرم‌افزاری، اپلیکیشن‌ها و سیستم‌های پیچیده‌ای که امروزه می‌بینیم، از طریق کدنویسی با زبان‌های برنامه نویسی طراحی و ساخته می‌شوند</p>
+
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <strong>ویژگی‌ها</strong>
+            <ul style="margin-top:8px;color:var(--muted)">
+              <li>صفحه چندبخشی و مرتب</li>
+              <li>قابلیت ثبت‌نام و مدیریت رمز</li>
+              <li>رابط کاربری مدرن و واکنش‌گرا</li>
+            </ul>
+          </div>
+
+          <div style="flex:1;min-width:220px">
+            <strong>اطلاعات کاربر</strong>
+            <div style="margin-top:10px" id="info-block">
+              <div style="font-size:14px;color:var(--muted)">وارد نشده</div>
+            </div>
+            <div class="action-row" style="margin-top:8px">
+              <button id="btn-logout" class="btn" style="background:var(--danger)">خروج</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Helpers ---------- */
+
+// Simple helper to show messages
+function showMsg(el, text, timeout=4000){
+  el.textContent = text;
+  if(timeout>0){
+    setTimeout(()=>{ if(el.textContent===text) el.textContent = ''; }, timeout);
+  }
+}
+
+// SHA-256 hash using SubtleCrypto -> returns hex string
+async function sha256Hex(str){
+  const enc = new TextEncoder();
+  const data = enc.encode(str);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  const bytes = Array.from(new Uint8Array(hash));
+  return bytes.map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+/* ---------- Simple localStorage "DB" ---------- */
+// users stored as array of {username, passHash}
+const DB_KEY = 'app_users_v1';
+const LOGIN_KEY = 'app_logged_user_v1';
+
+function loadUsers(){
+  try {
+    return JSON.parse(localStorage.getItem(DB_KEY)) || [];
+  } catch(e){
+    return [];
+  }
+}
+function saveUsers(users){
+  localStorage.setItem(DB_KEY, JSON.stringify(users));
+}
+function findUser(username){
+  const u = loadUsers(); return u.find(x => x.username.toLowerCase() === username.toLowerCase());
+}
+
+/* ---------- UI elements ---------- */
+const tabLogin = document.getElementById('tab-login');
+const tabRegister = document.getElementById('tab-register');
+const tabProfile = document.getElementById('tab-profile');
+
+const formLogin = document.getElementById('form-login');
+const formRegister = document.getElementById('form-register');
+const formProfile = document.getElementById('form-profile');
+
+const loginUser = document.getElementById('login-user');
+const loginPass = document.getElementById('login-pass');
+const btnLogin = document.getElementById('btn-login');
+const loginMsg = document.getElementById('login-msg');
+
+const regUser = document.getElementById('reg-user');
+const regPass = document.getElementById('reg-pass');
+const regPass2 = document.getElementById('reg-pass2');
+const btnRegister = document.getElementById('btn-register');
+const regMsg = document.getElementById('reg-msg');
+const strengthBar = document.getElementById('strength-bar');
+
+const currentUsername = document.getElementById('current-username');
+const chgPass = document.getElementById('chg-pass');
+const btnChangePass = document.getElementById('btn-change-pass');
+const profileMsg = document.getElementById('profile-msg');
+
+const infoBlock = document.getElementById('info-block');
+const mainAvatar = document.getElementById('main-avatar');
+const welcomeTitle = document.getElementById('welcome-title');
+const welcomeSub = document.getElementById('welcome-sub');
+const openDashboard = document.getElementById('open-dashboard');
+const btnLogout = document.getElementById('btn-logout');
+
+/* ---------- Tab behavior ---------- */
+function activateTab(tab){
+  [tabLogin,tabRegister,tabProfile].forEach(t=>t.classList.remove('active'));
+  [formLogin,formRegister,formProfile].forEach(f=>f.classList.remove('active'));
+  if(tab === 'login'){ tabLogin.classList.add('active'); formLogin.classList.add('active'); }
+  if(tab === 'register'){ tabRegister.classList.add('active'); formRegister.classList.add('active'); }
+  if(tab === 'profile'){ tabProfile.classList.add('active'); formProfile.classList.add('active'); }
+}
+tabLogin.addEventListener('click', ()=>activateTab('login'));
+tabRegister.addEventListener('click', ()=>activateTab('register'));
+tabProfile.addEventListener('click', ()=>activateTab('profile'));
+
+/* ---------- Password strength (very simple heuristic) ---------- */
+function calcStrength(p){
+  let score = 0;
+  if(p.length >= 8) score += 1;
+  if(/[A-Z\u0600-\u06FF]/.test(p)) score += 1; // uppercase or persian letters
+  if(/[0-9]/.test(p)) score += 1;
+  if(/[^A-Za-z0-9\u0600-\u06FF]/.test(p)) score += 1; // symbol
+  return score; // 0..4
+}
+function updateStrengthUI(){
+  const v = regPass.value || '';
+  const s = calcStrength(v);
+  const pct = (s/4)*100;
+  strengthBar.style.width = pct + '%';
+  if(s<=1) strengthBar.style.background = 'linear-gradient(90deg,#ff4d4f,#ff7a18)';
+  else if(s===2) strengthBar.style.background = 'linear-gradient(90deg,#ffb800,#ffd200)';
+  else if(s===3) strengthBar.style.background = 'linear-gradient(90deg,#00b894,#00d4a6)';
+  else strengthBar.style.background = 'linear-gradient(90deg,#00b894,#0066cc)';
+}
+regPass.addEventListener('input', updateStrengthUI);
+
+/* ---------- Registration ---------- */
+btnRegister.addEventListener('click', async function(){
+  regMsg.textContent = '';
+  const username = regUser.value.trim();
+  const pass = regPass.value;
+  const pass2 = regPass2.value;
+
+  if(!username || !pass || !pass2){
+    showMsg(regMsg, 'لطفاً تمام فیلدها را تکمیل کنید');
+    return;
+  }
+  if(pass !== pass2){
+    showMsg(regMsg, 'رمز و تکرار رمز یکسان نیستند');
+    return;
+  }
+  if(pass.length < 6){
+    showMsg(regMsg, 'رمز باید حداقل ۶ کاراکتر باشد');
+    return;
+  }
+  if(findUser(username)){
+    showMsg(regMsg, 'این نام کاربری قبلاً ثبت شده است');
+    return;
+  }
+
+  // create hash
+  const hash = await sha256Hex(pass);
+  const users = loadUsers();
+  users.push({ username, passHash: hash, created: new Date().toISOString() });
+  saveUsers(users);
+
+  showMsg(regMsg, 'ثبت‌نام با موفقیت انجام شد ✅', 5000);
+  // clear fields
+  regUser.value=''; regPass.value=''; regPass2.value='';
+  updateStrengthUI();
+  // switch to login
+  activateTab('login');
+});
+
+/* ---------- Login ---------- */
+btnLogin.addEventListener('click', async function(){
+  loginMsg.textContent = '';
+  const username = loginUser.value.trim();
+  const pass = loginPass.value;
+  if(!username || !pass){ showMsg(loginMsg, 'لطفاً هر دو فیلد را کامل کنید'); return; }
+
+  // check admin test credentials shortcut
+  if(username === 'admin' && pass === '123456'){
+    // ensure admin exists in DB (optional)
+    const users = loadUsers();
+    if(!users.some(u=>u.username.toLowerCase() === 'admin')){
+      const h = await sha256Hex('123456');
+      users.push({ username:'admin', passHash:h, created:new Date().toISOString() });
+      saveUsers(users);
+    }
+    localStorage.setItem(LOGIN_KEY, 'admin');
+    refreshUI();
+    activateTab('profile');
+    showMsg(loginMsg, 'ورود با موفقیت انجام شد', 3000);
+    return;
+  }
+
+  const user = findUser(username);
+  if(!user){ showMsg(loginMsg, 'نام کاربری یافت نشد'); return; }
+
+  const hash = await sha256Hex(pass);
+  if(hash !== user.passHash){ showMsg(loginMsg, 'رمز عبور اشتباه است'); return; }
+
+  localStorage.setItem(LOGIN_KEY, user.username);
+  refreshUI();
+  activateTab('profile');
+  showMsg(loginMsg, 'ورود با موفقیت انجام شد', 2500);
+});
+
+/* ---------- Change password (profile) ---------- */
+btnChangePass.addEventListener('click', async function(){
+  profileMsg.textContent = '';
+  const newPass = chgPass.value;
+  const logged = localStorage.getItem(LOGIN_KEY);
+  if(!logged){ showMsg(profileMsg, 'ابتدا وارد شوید'); return; }
+  if(!newPass || newPass.length < 6){ showMsg(profileMsg, 'رمز جدید را وارد کنید (حداقل ۶ کاراکتر)'); return; }
+
+  const users = loadUsers();
+  const idx = users.findIndex(u=>u.username.toLowerCase() === logged.toLowerCase());
+  if(idx === -1){ showMsg(profileMsg, 'کاربر یافت نشد'); return; }
+
+  users[idx].passHash = await sha256Hex(newPass);
+  saveUsers(users);
+  chgPass.value = '';
+  showMsg(profileMsg, 'رمز با موفقیت تغییر کرد ✅', 4000);
+});
+
+/* ---------- Logout ---------- */
+function logout(){
+  localStorage.removeItem(LOGIN_KEY);
+  refreshUI();
+  activateTab('login');
+  showMsg(loginMsg, 'خروج انجام شد', 2000);
+}
+btnLogout.addEventListener('click', logout);
+
+/* ---------- UI refresh with logged user ---------- */
+function refreshUI(){
+  const logged = localStorage.getItem(LOGIN_KEY);
+  if(logged){
+    // show user info in main area
+    mainAvatar.textContent = logged.charAt(0).toUpperCase();
+    welcomeTitle.textContent = `سلام، ${logged} 👋`;
+    welcomeSub.textContent = 'شما وارد شده‌اید. خوش آمدید!';
+    currentUsername.textContent = logged;
+    infoBlock.innerHTML = `<div style="font-weight:600;color:#0b1220">${logged}</div>
+                           <div style="font-size:13px;color:var(--muted);margin-top:6px">آخرین ورود: هم اکنون</div>`;
+  } else {
+    mainAvatar.textContent = 'A';
+    welcomeTitle.textContent = 'خوش آمدید!';
+    welcomeSub.textContent = 'برای ادامه لطفاً وارد شوید یا ثبت‌نام کنید.';
+    currentUsername.textContent = 'وارد نشده';
+    infoBlock.innerHTML = `<div style="font-size:14px;color:var(--muted)">هیچ کاربری وارد نشده</div>`;
+  }
+}
+
+/* ---------- Dashboard open button ---------- */
+openDashboard.addEventListener('click', function(){
+  const logged = localStorage.getItem(LOGIN_KEY);
+  if(!logged){
+    activateTab('login');
+    showMsg(loginMsg, 'برای دسترسی ابتدا وارد شوید');
+    return;
+  }
+  // scroll to dashboard card (for single page UX)
+  document.getElementById('dashboard-card').scrollIntoView({behavior:'smooth'});
+});
+
+/* ---------- initialize sample admin (if none) ---------- */
+(async function init(){
+  // create admin sample if DB empty (so user can test)
+  const users = loadUsers();
+  if(users.length === 0){
+    const h = await sha256Hex('123456');
+    users.push({username:'admin', passHash:h, created:new Date().toISOString()});
+    saveUsers(users);
+  }
+  refreshUI();
+
+  // if logged, open profile tab
+  if(localStorage.getItem(LOGIN_KEY)){
+    activateTab('profile');
+  } else {
+    activateTab('login');
+  }
+})();
+
+/* ---------- keyboard: enter to submit in forms ---------- */
+[loginUser, loginPass].forEach(inp => inp.addEventListener('keydown', e=>{
+  if(e.key === 'Enter') btnLogin.click();
+}));
+[regUser, regPass, regPass2].forEach(inp => inp.addEventListener('keydown', e=>{
+  if(e.key === 'Enter') btnRegister.click();
+}));
+</script>
+</body>
+</html>
