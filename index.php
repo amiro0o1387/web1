@@ -3,21 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>اپ شخصی — Material UI</title>
+  <title>اپ شخصی</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#6200ee">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="md-light">
   <div id="splash" class="splash">
-    <div class="splash-logo">ام</div>
+    <div class="splash-logo"px>😊</div>
     <div class="splash-text">در حال بارگذاری...</div>
   </div>
 
   <header class="md-topbar">
-    <div class="md-brand">امیر محمد حیدری</div>
+    <div class="md-brand">معرفی زبان های برنامه نویسی</div>
     <div class="md-actions">
-      <button id="themeToggle" class="md-icon" title="تغییر تم">🌗</button>
+      <button id="themeToggle" class="md-icon" title="تغییر تم">🌗 <a href="test/test.html" style="
+position:fixed; top:5px; left:1px;
+font-size: 15px;
+background:#175285; color:#fff; padding:5px 5px;
+border-radius:1px; text-decoration:none;">ورود</a></button>
     </div>
   </header>
 
@@ -31,7 +35,7 @@
 
     <section id="content" class="md-page">
       <div class="md-card">
-        <h2>محتوای وارد شده</h2>
+        <h2>توضیحات</h2>
         <!-- Start of user HTML content -->
         <!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
@@ -227,11 +231,7 @@
 
 font-size: 50px;
  color: rgb(1, 1, 1);">
- <a href="test/test.html" style="
-position:fixed; top:5px; left:1px;
-font-size: 15px;
-background:#175285; color:#fff; padding:1px 1px;
-border-radius:1px; text-decoration:none;">ورود</a>
+
 
 <b>
 <i>
@@ -254,6 +254,7 @@ border-radius:1px; text-decoration:none;">ورود</a>
         <li><a href="#id5">برآورد تعداد زبان‌های برنامه نویسی</a></li>
         <li><a href="#id6">دلایل عدم وجود عدد دقیق</a></li>
         <li><a href="#id7">تفاوت بین زبان‌های پرکاربرد و زبان‌های کمتر شناخته‌شده</a></li>
+        <li><a href="#id8">برنامه نویسی را از کجا شروع کنیم؟</a></li>
       </ul>
     </nav>
   
@@ -366,6 +367,16 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
 در مجموع، تعداد زبان‌های برنامه نویسی به‌طور مداوم در حال تغییر است. برنامه نویسی چند زبان دارد که برخی از آن‌ها گسترده و پرکاربرد هستند، در حالی که بسیاری از زبان‌ها به‌طور خاص و در شرایط محدودتر استفاده می‌شوند.
 </section>
 </p>
+<p id="id8" style="text-align: right;
+font-size: 40px;
+color: rgb(164, 125, 77);">
+      <p style="text-align: right;font-size: 25px;color: grey;">برنامه نویسی را از کجا شروع کنیم؟</p>
+</p>
+<p>
+  <section style="font-size: 25px;">
+    اگر به دنبال یک نقشه راه برای یادگیری زبان برنامه نویسی هستید، باید ابتدا با دسته‌بندی مختلف زبان‌های برنامه نویسی آشنا شوید، پس از انتخاب حوزه و نوع زبان که می‌خواهید با آن کار کنید می‌توانید شروع به یادگیری زبان برنامه نویسی از صفر و تمرین برنامه نویسی کنید.
+  </section>
+</p>
  <div class="container">
     <h1>درباره ما</h1>
     <p>ما یک تیم خلاق هستیم که عاشق طراحی، توسعه و ساخت تجربه‌های دیجیتال منحصربه‌فرد برای کاربران هستیم.</p>
@@ -407,9 +418,7 @@ color: rgb(22, 14, 14);">
       <div class="md-card">
         <h2>آموزش و تمرین‌ها</h2>
         <ol>
-          <li>ساخت Portfolio</li>
-          <li>اعتبارسنجی فرم تماس</li>
-          <li>طراحی صفحه خدمات</li>
+          بزودی
         </ol>
       </div>
     </section>
