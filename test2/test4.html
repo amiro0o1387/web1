@@ -1,0 +1,43 @@
+<html><!DOCTYPE html>
+<html lang="fa-IR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="n1">
+    <button onclick="zf()">تست</button>
+    <span id="out">....</span>
+    <script>
+        function zf(){
+            Number=document.getElementById("n1").value;
+            if (Number>0){
+             document.getElementById("out").innerHTML="مثبت";
+             document.getElementById("out").style="color:blue";   
+            }else{
+                document.getElementById("out").innerHTML="منفی";
+                document.getElementById("out").style="color:red";
+            }
+        }
+        
+    </script>
+    <br>
+    <br>
+        <input type="text1" id="n2">
+    <button onclick="zb()">تست</button>
+    <span id="out1">....</span>
+    <script>
+        function zb(){
+            Number=document.getElementById("n2").value;
+            if (Number>0){
+             document.getElementById("out1").innerHTML="زوج";
+             document.getElementById("out1").style="color:blue";   
+            }else{
+                document.getElementById("out1").innerHTML="فرد";
+                document.getElementById("out1").style="color:red";
+            }
+        }
+    </script>
+</body>
+</html></html>

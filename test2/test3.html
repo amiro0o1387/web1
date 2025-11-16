@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    </head>
+<body>
+    <p> میانگین سه عدد </p>
+        <input type="text" id="n1">
+        <input type="text" id="n2">
+        <input type="text" id="n3">
+    <button onclick="ab()">ok</button>
+    <p id="p1">-----</p>
+    <script>
+        function ab(){
+            a=Number(document.getElementById("n1").value);
+            b=Number(document.getElementById("n2").value);
+            c=Number(document.getElementById("n3").value);
+            c=(a+b+c)/3;
+            document.getElementById("p1").innerHTML=c;
+        }
+    </script>
+</body>
+</html>

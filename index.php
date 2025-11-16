@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>اپ شخصی — Material UI</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6200ee">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="md-light">
+  <div id="splash" class="splash">
+    <div class="splash-logo">ام</div>
+    <div class="splash-text">در حال بارگذاری...</div>
+  </div>
+
+  <header class="md-topbar">
+    <div class="md-brand">امیر محمد حیدری</div>
+    <div class="md-actions">
+      <button id="themeToggle" class="md-icon" title="تغییر تم">🌗</button>
+    </div>
+  </header>
+
+  <main class="md-main" id="main">
+    <section id="home" class="md-page active">
+      <div class="md-card hero">
+        <h1>سلام! خوش آمدی 👋</h1>
+        <p>به سایت من خوش امدی😊</p>
+      </div>
+    </section>
+
+    <section id="content" class="md-page">
+      <div class="md-card">
+        <h2>محتوای وارد شده</h2>
+        <!-- Start of user HTML content -->
+        <!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرفی ماشین های برنامه نویسی</title>
+    <link rel="stylesheet" href="part2.css">
+    <style>
+                #sp01 
+        {
+           color: rgb(218, 7, 7);
+        }
+        #sp02
+        {
+            color: rgb(226, 17, 17);
+        }
+        #p01
+        {
+            border: solid rgba(92, 5, 232, 0.547) 5px;
+            margin: 10px;
+            padding: 10px;
+            font-size: 80px;
+            border-radius: 100px;
+        }
+        #p02
+        {
+         font-size: 45px;
+         text-align: right;
+        }
+         body {
+      font-family: "Vazirmatn", sans-serif;
+      direction: rtl;
+      background: linear-gradient(120deg, #eef5ff, #f7fcff);
+      color: #222;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0058d6;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #0078ff, #00b7ff);
+      margin: 10px auto 0;
+      border-radius: 4px;
+    }
+
+    /* کارت فهرست مطالب */
+    .toc {
+      background: linear-gradient(90deg, #0078ff10, #00b7ff15);
+      border-right: 4px solid #0078ff;
+      border-radius: 16px;
+      padding: 20px 25px;
+      margin-bottom: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .toc:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .toc h2 {
+      margin-top: 0;
+      color: #0044cc;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc h2::before {
+      content: "📘";
+      font-size: 1.3rem;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding-right: 0;
+      margin: 15px 0 0 0;
+    }
+
+    .toc li {
+      margin: 10px 0;
+      position: relative;
+      padding-right: 25px;
+    }
+
+    .toc li::before {
+      content: "▸";
+      position: absolute;
+      right: 0;
+      color: #00a8ff;
+      font-size: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .toc a {
+      text-decoration: none;
+      color: #0044cc;
+      font-weight: 500;
+      transition: color 0.3s, padding-right 0.3s;
+    }
+
+    .toc a:hover {
+      color: #00a8ff;
+      padding-right: 5px;
+    }
+
+    /* بخش‌های اصلی */
+    section {
+      margin-bottom: 50px;
+      scroll-margin-top: 100px;
+      background: #f9fbff;
+      padding: 25px 20px;
+      border-radius: 14px;
+      border: 1px solid #e0ebff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: transform 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+    }
+
+    h2 {
+      color: #0078ff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2::before {
+      content: "🔹";
+      font-size: 1.2rem;
+    }
+
+    p {
+      line-height: 1.9;
+      text-align: justify;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+     body{margin:0;font-family:'Vazirmatn',sans-serif;background:linear-gradient(135deg,#e0f7fa,#ffffff);color:#0f172a;line-height:1.6}
+    .container{max-width:800px;margin:40px auto;padding:20px;text-align:center;background:white;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+    h1{color:#005789;margin-bottom:10px}
+    p{color:#374151;margin-bottom:20px}
+    .team{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:20px}
+    .member{background:linear-gradient(145deg,#f0fdfa,#ffffff);padding:12px;border-radius:14px;width:160px;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+    .member img{width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:8px}
+    .member strong{display:block;color:#005789}
+    footer{margin-top:30px;font-size:13px;color:#6b7280}
+    button{background:#00897b;color:white;border:none;padding:10px 18px;border-radius:10px;cursor:pointer;transition:0.3s}
+    button:hover{background:#005789}
+    </style>
+   
+</head>
+<body style="direction: rtl;">
+<p id="p01" style="text-align: center;
+
+font-size: 50px;
+ color: rgb(1, 1, 1);">
+ <a href="test/test.html" style="
+position:fixed; top:5px; left:1px;
+font-size: 15px;
+background:#175285; color:#fff; padding:1px 1px;
+border-radius:1px; text-decoration:none;">ورود</a>
+
+<b>
+<i>
+ معرفی <span id="sp02">ماشین</span> های  های برنامه نویسی  زبان های برتر دنیا
+</i>
+</b>
+</p>
+<p style="text-align: center;"><img src="programming-language.webp"></p>
+  <div class="container">
+    <h1>📖فهرست مطالب</h1>
+
+    <!-- فهرست مطالب -->
+    <nav class="toc">
+      <h2>فهرست مطالب</h2>
+      <ul>
+        <li><a href="#id1">مقدمه</a></li>
+        <li><a href="#id2">تعریف زبان برنامه نویسی ساده</a></li>
+        <li><a href="#id3">تعریف زبان برنامه نویسی</a></li>
+        <li><a href="#id4">برنامه نویسی چند زبان دارد؟</a></li>
+        <li><a href="#id5">برآورد تعداد زبان‌های برنامه نویسی</a></li>
+        <li><a href="#id6">دلایل عدم وجود عدد دقیق</a></li>
+        <li><a href="#id7">تفاوت بین زبان‌های پرکاربرد و زبان‌های کمتر شناخته‌شده</a></li>
+      </ul>
+    </nav>
+  
+  <p style="text-align: right;
+  font-size: 35px;color: grey;">
+مقدمه
+</p>
+<p style="text-align: right ;
+font-size: 20px;">
+<section id="id1">
+.زبان‌های برنامه نویسی ابزارهای اصلی برای برقراری ارتباط با کامپیوترها و دستور دادن به آن‌ها برای انجام وظایف مختلف هستند. در واقع، تمام برنامه‌های نرم‌افزاری، اپلیکیشن‌ها و سیستم‌های پیچیده‌ای که امروزه می‌بینیم، از طریق کدنویسی با زبان‌های برنامه نویسی طراحی و ساخته می‌شوند
+</section>
+</p>
+<p style="text-align: right;
+font-size: 30px;color: grey;">تعریف زبان برنامه نویسی ساده</p>
+<p style="text-align: right;
+font-size: 20px;">
+    <section id="id2">
+در ابتدا، کامپیوترها به صورت مستقیم تنها قادر به درک دستورات باینری (صفر و یک) بودند که بسیار پیچیده و دشوار برای انسان‌ها بودند. به همین دلیل، زبان‌هایی طراحی شدند که از نظر ساختاری و دستوری برای برنامه‌نویسان قابل فهم‌تر و راحت‌تر باشند. این زبان‌ها به ما این امکان را می‌دهند که با نوشتن دستورات سطح بالاتر و نزدیک‌تر به زبان طبیعی، به کامپیوتر دستور دهیم.
+</section>
+</p>
+<h2>
+<p style="text-align: right;
+font-size: 40px;">
+    
+        <p style="text-align: right;
+        font-size: 25px;color: grey;">تعریف زبان برنامه نویسی</p>
+
+</h2>
+</p>
+<p style="text-align: right;
+font-size: 20px;">
+    <section id="id3">
+ برنامه نویسی مجموعه‌ای از قواعد و دستورالعمل‌هاست که برای برقراری ارتباط بین انسان و کامپیوتر به کار می‌رود. این زبان‌ها به برنامه‌نویسان اجازه می‌دهند که الگوریتم‌ها و منطق‌های موردنظر خود را به گونه‌ای بنویسند که کامپیوتر بتواند آن‌ها را پردازش و اجرا کند   
+</section>
+</p>
+<p style="text-align: right;
+font-size: 20px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+هر زبان برنامه نویسی دارای نحو (Syntax) و معناشناسی (Semantics) مخصوص به خود است که تعیین می‌کند کدها چگونه نوشته شوند و چگونه اجرا گردند. برخی زبان‌ها سطح بالا و نزدیک به زبان انسانی هستند (مانند Python و Java)، درحالی‌که برخی دیگر سطح پایین‌تر و نزدیک به زبان ماشین‌اند (مانند Assembly و C)    
+</p>
+<p style="text-align: right;
+font-size: 40px;">
+<u>
+      <p style="text-align: right;
+      font-size: 25px;color: grey;">برنامه نویسی چند زبان دارد؟</p>
+</u>
+</p>
+<section id="id4">
+    <p style="text-align: right;
+    font-size: 20px;" data-start="37" data-end="361">تعداد دقیق زبان‌های برنامه نویسی موجود در جهان مشخص نیست و به دلیل تنوع گسترده‌ای که در این حوزه وجود دارد، شمارش دقیق آن‌ها پیچیده است. برخی از منابع تخمین می‌زنند که تعداد زبان‌های برنامه نویسی بین چند صد تا چند هزار متغیر است. این تعداد زیاد به دلیل تولید زبان‌های جدید به‌طور مداوم و همچنین انحلال زبان‌های قدیمی‌تر است.</p>
+ <p style="text-align: center;"><img decoding="async" class="aligncenter size-full wp-image-14082 entered lazyloaded" alt="برنامه نویسی چند زبان دارد؟" width="1024" height="576" title="برنامه نویسی چند زبان دارد؟ — معرفی 50 زبان پرکاربرد 3" data-lazy-srcset="https://blog.programstore.ir/wp-content/uploads/2025/02/programming-language.webp 1024w, https://blog.programstore.ir/wp-content/uploads/2025/02/programming-language-300x169.webp 300w, https://blog.programstore.ir/wp-content/uploads/2025/02/programming-language-768x432.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://blog.programstore.ir/wp-content/uploads/2025/02/programming-language.webp" src="https://blog.programstore.ir/wp-content/uploads/2025/02/programming-language.webp" data-ll-status="loaded" sizes="(max-width: 1024px) 100vw, 1024px" srcset="https://blog.programstore.ir/wp-content/uploads/2025/02/programming-language.webp 1024w, https://blog.programstore.ir/wp-content/uploads/2025/02/programming-language-300x169.webp 300w, https://blog.programstore.ir/wp-content/uploads/2025/02/programming-language-768x432.webp 768w">
+</section>
+</p>
+ <p style="text-align: right;
+ font-size: 40px;
+ color: rgb(164, 125, 77);">
+      <p style="text-align: right;font-size: 25px;color: grey;">برآورد تعداد زبان‌های برنامه نویسی</p>
+ </p>
+ <p style="text-align: right;
+ font-size: 20px;
+ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+ <section id="id5">
+    برخی از منابع تخمین می‌زنند که تعداد زبان‌های برنامه نویسی بیش از ۷۰۰ زبان است و برخی دیگر این تعداد را نزدیک به ۹۰۰۰ می‌دانند. این اختلاف آمار به دلایل مختلفی از جمله تعریف هر زبان به‌عنوان یک زبان مستقل یا نسخه‌های مختلف از یک زبان (مانند نسخه‌های مختلف JavaScript یا Python) بستگی دارد. علاوه بر این، زبان‌های برنامه نویسی جدید به‌طور مداوم در حال ظهور هستند، در حالی که برخی از زبان‌ها به‌طور تدریجی کنار گذاشته می‌شوند.
+</section>
+</p>
+ <p style="text-align: right;
+ font-size: 40px;
+ color: rgb(164, 125, 77);">
+      <p style="text-align: right;font-size: 25px;color: grey;">دلایل عدم وجود عدد دقیق</p>
+</p>
+ <p style="text-align: right;
+ font-size: 20px;
+ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+ <section id="id6">
+ <ol>
+    <details>
+ <summary style="font-size: 20px;">جهت خواندن دلایل کلیک کنید</summary>
+ <li>
+    <b style="font-size: 20px;">ظهور زبان‌های جدید:</b> هر ساله زبان‌های جدیدی به وجود می‌آیند که در تلاش برای رفع نیازهای خاص یا ساده‌تر کردن فرآیندهای برنامه نویسی هستند. به همین دلیل، تعداد زبان‌ها به‌طور مداوم در حال تغییر است. 
+</li>
+    <br>
+<li>
+    <b style="font-size: 20px;">زبان‌های تخصصی و اختصاصی:</b> برخی زبان‌ها برای نیازهای خاص مانند کنترل دستگاه‌ها، شبیه‌سازی‌های علمی، یا مدیریت پایگاه داده طراحی می‌شوند که کمتر شناخته‌شده و استفاده می‌شوند.
+</li>
+    <br>
+ <li>   <b style="font-size: 20px;">زبان‌های منسوخ یا کم‌استفاده:</b> بسیاری از زبان‌های قدیمی که دیگر کاربرد چندانی ندارند، همچنان در برخی منابع و کتابخانه‌ها وجود دارند. این زبان‌ها ممکن است شمارش نشوند، اما هنوز هم می‌توان به آن‌ها اشاره کرد.
+</li>
+</details>
+</ol>
+</section>
+</p>
+<p style="text-align: right;
+font-size: 40px;
+color: rgb(164, 125, 77);">
+      <p style="text-align: right;font-size: 25px;color: grey;">تفاوت بین زبان‌های پرکاربرد و زبان‌های کمتر شناخته‌شده</p>
+</p>
+<p style="text-align: right;
+font-size: 20px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+<section id="id7">
+    <b style="font-size: 25px;">زبان‌های پرکاربرد:</b> زبان‌های برنامه نویسی مانند Python، Java، JavaScript، C++ و C# از زبان‌های پرکاربرد و معروف در صنعت هستند. این زبان‌ها در بسیاری از حوزه‌ها مانند توسعه نرم‌افزار، وب، اپلیکیشن‌های موبایل و حتی هوش مصنوعی به‌طور گسترده استفاده می‌شوند. این زبان‌ها اکثراً دارای جامعه‌های بزرگ از توسعه‌دهندگان، مستندات جامع و کتابخانه‌های مختلف هستند.
+</p>
+</section>
+</p>
+<p>
+    <section>
+    <b style="font-size: 25px;">زبان‌های کمتر شناخته‌شده:</b> بسیاری از زبان‌های دیگر که ممکن است برای کاربردهای خاص طراحی شده‌اند یا به دلایلی کمتر شناخته‌شده هستند، معمولاً در محیط‌های خاص یا در صنعت‌های خاصی استفاده می‌شوند. به‌عنوان مثال، زبان‌هایی مثل COBOL و Fortran هنوز در برخی از سیستم‌های بانکی و علمی استفاده می‌شوند، اما نسبت به زبان‌های مدرن‌تر کمتر محبوب هستند. این زبان‌ها ممکن است جامعه‌های کوچکتری داشته باشند و اغلب به‌روزرسانی‌های کمتری دریافت کنند.
+
+در مجموع، تعداد زبان‌های برنامه نویسی به‌طور مداوم در حال تغییر است. برنامه نویسی چند زبان دارد که برخی از آن‌ها گسترده و پرکاربرد هستند، در حالی که بسیاری از زبان‌ها به‌طور خاص و در شرایط محدودتر استفاده می‌شوند.
+</section>
+</p>
+ <div class="container">
+    <h1>درباره ما</h1>
+    <p>ما یک تیم خلاق هستیم که عاشق طراحی، توسعه و ساخت تجربه‌های دیجیتال منحصربه‌فرد برای کاربران هستیم.</p>
+
+    <div class="team">
+      <div class="member">
+        <strong>امیرمحمد حیدری</strong>
+        <span>طراح htmlوcssوjs</span>
+      </div>
+      <div class="member">
+        <strong>امیرمحمد حیدری</strong>
+        <span>طراح php</span>
+      </div>
+    </div>
+
+    <p style="margin-top:24px">هدف ما ساخت محصولاتی است که زندگی را ساده‌تر و زیباتر کنند.</p>
+
+    <button onclick="alert('09941482159')">تماس با ما</button>
+
+    <footer>شرکت نمونه طراح سایت نجف اباد</footer>
+ <p id="p02" style="text-align: right;
+color: rgb(22, 14, 14);">
+<a href="">
+</a>
+</p>
+<p id="p03" style="text-align: center;">
+
+    
+
+
+</p>
+</body>
+</html>
+        <!-- End of user HTML content -->
+      </div>
+    </section>
+
+    <section id="learn" class="md-page">
+      <div class="md-card">
+        <h2>آموزش و تمرین‌ها</h2>
+        <ol>
+          <li>ساخت Portfolio</li>
+          <li>اعتبارسنجی فرم تماس</li>
+          <li>طراحی صفحه خدمات</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="projects" class="md-page">
+      <div class="md-card">
+        <h2>نمونه کارها</h2>
+        <div class="md-grid">
+          <div class="project">وب‌سایت معرفی</div>
+          <div class="project">اپ PWA</div>
+          <div class="project">سامانه فرم</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="md-page">
+      <div class="md-card">
+        <h2>درباره من</h2>
+        <p>اطلاعات تماس و معرفی کوتاه در این بخش قرار می‌گیرد.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="md-page">
+      <div class="md-card">
+        <h2>تماس</h2>
+        <form id="contactForm">
+          <label>نام</label><input name="name" required>
+          <label>ایمیل</label><input type="email" name="email" required>
+          <label>پیام</label><textarea name="message" rows="4" required></textarea>
+          <button class="md-btn" type="submit">ارسال</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <nav class="md-bottom" role="navigation">
+    <button data-target="home" class="md-nav active">خانه</button>
+    <button data-target="content" class="md-nav">محتوا</button>
+    <button data-target="learn" class="md-nav">آموزش</button>
+    <button data-target="projects" class="md-nav">پروژه‌ها</button>
+    <button data-target="contact" class="md-nav">تماس</button>
+  </nav>
+
+  <button id="fab" class="md-fab" title="کمک">+</button>
+  <div id="toast" class="md-toast" aria-live="polite"></div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
