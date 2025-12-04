@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ماشین‌حساب</title>
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --panel:#0b1220;
+      --accent:#06b6d4;
+      --muted:#9ca3af;
+      --glass: rgba(255,255,255,0.03);
+      --btn-bg:#111827;
+      --btn-shadow: rgba(2,6,23,0.6);
+      --success:#10b981;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: "Segoe UI","IRANSans", Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg,var(--bg),#08101a);
+      color:#e6eef6;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      -webkit-font-smoothing:antialiased;
+      direction:rtl;
+    }
+
+    .calculator{
+      width:380px;
+      max-width:100%;
+      background:linear-gradient(180deg,var(--panel),#07101a);
+      border-radius:16px;
+      box-shadow: 0 12px 30px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+      overflow:hidden;
+      padding:18px;
+    }
+
+    .header{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:12px;
+    }
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex:1;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);
+      display:grid;place-items:center;font-weight:700;color:#02111a;box-shadow:0 6px 18px rgba(7,12,20,0.6);
+    }
+    .title{font-size:14px;color:var(--muted)}
+
+    .screen{
+      background:var(--glass);
+      border-radius:12px;
+      padding:12px;
+      min-height:84px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:6px;
+      margin-bottom:12px;
+      overflow:hidden;
+    }
+    .history{
+      font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:6px;
+    }
+    .output{
+      font-size:28px;font-weight:700;text-align:left;direction:ltr;padding-left:6px;
+      word-break:break-all;
+    }
+
+    .keys{
+      display:grid;
+      grid-template-columns: repeat(4,1fr);
+      gap:10px;
+    }
+
+    button.key{
+      border:0;padding:14px 12px;border-radius:10px;background:var(--btn-bg);color:#e6eef6;font-size:16px;
+      box-shadow: 0 6px 14px var(--btn-shadow);cursor:pointer;user-select:none;outline:0;
+    }
+    button.key:active{transform:translateY(2px)}
+    button.op{background:linear-gradient(180deg,#0f1724,#111827);color:var(--accent);font-weight:600}
+    button.equals{grid-column: span 2;background:linear-gradient(90deg,var(--accent),#7c3aed);color:#02111a;font-weight:800;}
+    button.clear{background:linear-gradient(90deg,#ef4444,#f97316);color:white}
+    button.func{background:linear-gradient(180deg,#111827,#0b1220);color:var(--muted)}
+
+    .small{font-size:13px;padding:8px}
+
+    .footer{margin-top:10px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+    .kbd-hint{opacity:0.85}
+
+    @media (max-width:420px){
+      .calculator{padding:14px}
+      .output{font-size:22px}
+      button.key{padding:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator" role="application" aria-label="ماشین‌حساب">
+    <div class="header">
+      <div class="brand">
+        <div>
+          <div class="title">ماشین‌حساب</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center">
+      </div>
+    </div>
+
+    <div class="screen" aria-live="polite">
+      <div id="history" class="history" aria-hidden="true"></div>
+      <div id="output" class="output" role="textbox" aria-label="نمایش محاسبه">0</div>
+    </div>
+
+    <div class="keys">
+      <button class="key func" data-action="mc">MC</button>
+      <button class="key func" data-action="mplus">M+</button>
+      <button class="key func" data-action="mminus">M-</button>
+      <button class="key clear" data-action="clear">C</button>
+
+      <button class="key func" data-value="(">(</button>
+      <button class="key func" data-value=")">)</button>
+      <button class="key func" data-action="sqrt">√</button>
+      <button class="key op" data-value="/">÷</button>
+
+      <button class="key" data-value="7">7</button>
+      <button class="key" data-value="8">8</button>
+      <button class="key" data-value="9">9</button>
+      <button class="key op" data-value="*">×</button>
+
+      <button class="key" data-value="4">4</button>
+      <button class="key" data-value="5">5</button>
+      <button class="key" data-value="6">6</button>
+      <button class="key op" data-value="-">−</button>
+
+      <button class="key" data-value="1">1</button>
+      <button class="key" data-value="2">2</button>
+      <button class="key" data-value="3">3</button>
+      <button class="key op" data-value="+">+</button>
+
+      <button class="key func" data-action="plusminus">±</button>
+      <button class="key" data-value="0">0</button>
+      <button class="key" data-value=".">.</button>
+      <button class="key equals" data-action="equals">=</button>
+    </div>
+  <script>
+    (function(){
+      const outputEl = document.getElementById('output');
+      const historyEl = document.getElementById('history');
+      const memIndicator = document.getElementById('memIndicator');
+      const toggleThemeBtn = document.getElementById('toggleTheme');
+
+      let expr = '';
+      let memory = 0;
+      let lastResult = null;
+      let history = [];
+
+      function render(){
+        outputEl.textContent = expr || (lastResult !== null ? String(lastResult) : '0');
+        historyEl.textContent = history.slice(-1)[0] || '';
+        memIndicator.textContent = 'M: ' + (memory || 0);
+      }
+
+      function sanitizeExpression(input){
+        // allow digits, operators, parentheses, decimal and percent symbol
+        // convert visual operators to JS-friendly tokens
+        let s = String(input);
+        s = s.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-');
+        // handle percent: turn number% into (number/100)
+        s = s.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');
+        // handle square root token '√' — convert to Math.sqrt(...)
+        // allow syntax like √9 or √(9+7)
+        s = s.replace(/√\s*\(/g,'Math.sqrt(');
+        s = s.replace(/√\s*(\d+(?:\.\d+)?)/g,'Math.sqrt($1)');
+        // allow power using ^ -> **
+        s = s.replace(/\^/g,'**');
+        // final safety: remove any character that's not part of allowed set
+        if(/[^0-9+\-*/().%Mathsqrt\s,**]/.test(s)){
+          // but allow letters that appear in Math.* (we checked 'Math' and 'sqrt')
+          // If suspicious, throw
+          // We'll be lenient but prevent alphabets except 'Math' and 'sqrt'
+          s = s.replace(/[A-Za-z]/g,'');
+        }
+        return s;
+      }
+
+      function calculate(raw){
+        try{
+          if(raw.trim()==='') return 0;
+          const code = sanitizeExpression(raw);
+          // Use Function instead of eval for a slightly safer sandbox
+          const result = Function('return (' + code + ')')();
+          if(typeof result === 'number' && isFinite(result)){
+            lastResult = result;
+            history.push(raw + ' = ' + result);
+            if(history.length>50) history.shift();
+            render();
+            return result;
+          } else {
+            throw new Error('نتیجه نامعتبر');
+          }
+        }catch(e){
+          lastResult = null;
+          render();
+          return 'خطا';
+        }
+      }
+
+      // handle button clicks
+      document.querySelectorAll('button.key').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const v = btn.getAttribute('data-value');
+          const action = btn.getAttribute('data-action');
+          if(action){
+            handleAction(action);
+          }else if(v){
+            insertValue(v);
+          }
+        });
+      });
+
+      function insertValue(v){
+        // avoid multiple leading zeros
+        if(expr === '0' && v !== '.' ) expr = '';
+        expr += v;
+        render();
+      }
+
+      function handleAction(action){
+        switch(action){
+          case 'clear': expr = ''; lastResult = null; render(); break;
+          case 'equals':
+            const res = calculate(expr || String(lastResult||0));
+            expr = String(res=== 'خطا' ? '' : res);
+            render();
+            break;
+          case 'sqrt':
+            if(expr==='') expr = String(lastResult||0);
+            expr = 'Math.sqrt(' + expr + ')';
+            const r = calculate(expr);
+            expr = String(r==='خطا' ? '' : r);
+            render();
+            break;
+          case 'plusminus':
+            if(expr){
+              // toggle sign for last number
+              expr = expr.replace(/(\d+(?:\.\d+)?)$/,'m$1');
+              expr = expr.replace(/m(\d+(?:\.\d+)?)/g,'(-$1)');
+              render();
+            }else if(lastResult!==null){
+              lastResult = -lastResult; render();
+            }
+            break;
+          case 'mc': memory = 0; render(); break;
+          case 'mplus':
+            {
+              const val = calculate(expr || String(lastResult||0));
+              if(typeof val === 'number') memory += val;
+              expr=''; render();
+            }
+            break;
+          case 'mminus':
+            {
+              const val = calculate(expr || String(lastResult||0));
+              if(typeof val === 'number') memory -= val;
+              expr=''; render();
+            }
+            break;
+        }
+      }
+
+      // keyboard support
+      window.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter'){ e.preventDefault(); handleAction('equals'); return; }
+        if(e.key === 'Backspace'){ e.preventDefault(); expr = expr.slice(0,-1); render(); return; }
+        const allowed = '0123456789+-*/().%';
+        if(allowed.includes(e.key)){
+          insertValue(e.key);
+          e.preventDefault();
+        }
+      });
+
+      // theme toggle just changes CSS variables (simple)
+      let light = false;
+      toggleThemeBtn.addEventListener('click', ()=>{
+        light = !light;
+        if(light){
+          document.documentElement.style.setProperty('--bg','#f6f9fb');
+          document.documentElement.style.setProperty('--panel','#ffffff');
+          document.documentElement.style.setProperty('--accent','#0ea5b3');
+          document.documentElement.style.setProperty('--muted','#51606a');
+          document.documentElement.style.setProperty('--btn-bg','#f3f4f6');
+          document.documentElement.style.setProperty('--btn-shadow','rgba(2,6,23,0.08)');
+          document.documentElement.style.setProperty('--glass','rgba(2,6,23,0.03)');
+          document.documentElement.style.setProperty('color','#02111a');
+        } else {
+          document.documentElement.style.removeProperty('--bg');
+          document.documentElement.style.removeProperty('--panel');
+          document.documentElement.style.removeProperty('--accent');
+          document.documentElement.style.removeProperty('--muted');
+          document.documentElement.style.removeProperty('--btn-bg');
+          document.documentElement.style.removeProperty('--btn-shadow');
+          document.documentElement.style.removeProperty('--glass');
+          document.documentElement.style.removeProperty('color');
+        }
+      });
+
+      // initial render
+      render();
+
+      // expose a tiny API for debugging in console
+      window._calc = {
+        getExpression:()=>expr,
+        setExpression:(s)=>{expr=String(s);render();},
+        evaluate:()=>calculate(expr),
+        getMemory:()=>memory,
+        getHistory:()=>history.slice(),
+      };
+    })();
+  </script>
+</body>
+</html>
