@@ -6,7 +6,7 @@
   <title>ماشین‌حساب</title>
   <style>
     :root{
-      --bg:#0f1724; /* dark navy */
+      --bg:#0f1724;
       --panel:#0b1220;
       --accent:#06b6d4;
       --muted:#9ca3af;
@@ -173,23 +173,13 @@
       }
 
       function sanitizeExpression(input){
-        // allow digits, operators, parentheses, decimal and percent symbol
-        // convert visual operators to JS-friendly tokens
         let s = String(input);
         s = s.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-');
-        // handle percent: turn number% into (number/100)
         s = s.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');
-        // handle square root token '√' — convert to Math.sqrt(...)
-        // allow syntax like √9 or √(9+7)
         s = s.replace(/√\s*\(/g,'Math.sqrt(');
         s = s.replace(/√\s*(\d+(?:\.\d+)?)/g,'Math.sqrt($1)');
-        // allow power using ^ -> **
         s = s.replace(/\^/g,'**');
-        // final safety: remove any character that's not part of allowed set
         if(/[^0-9+\-*/().%Mathsqrt\s,**]/.test(s)){
-          // but allow letters that appear in Math.* (we checked 'Math' and 'sqrt')
-          // If suspicious, throw
-          // We'll be lenient but prevent alphabets except 'Math' and 'sqrt'
           s = s.replace(/[A-Za-z]/g,'');
         }
         return s;
@@ -199,7 +189,6 @@
         try{
           if(raw.trim()==='') return 0;
           const code = sanitizeExpression(raw);
-          // Use Function instead of eval for a slightly safer sandbox
           const result = Function('return (' + code + ')')();
           if(typeof result === 'number' && isFinite(result)){
             lastResult = result;
@@ -217,7 +206,6 @@
         }
       }
 
-      // handle button clicks
       document.querySelectorAll('button.key').forEach(btn=>{
         btn.addEventListener('click',()=>{
           const v = btn.getAttribute('data-value');
@@ -231,7 +219,6 @@
       });
 
       function insertValue(v){
-        // avoid multiple leading zeros
         if(expr === '0' && v !== '.' ) expr = '';
         expr += v;
         render();
@@ -254,7 +241,6 @@
             break;
           case 'plusminus':
             if(expr){
-              // toggle sign for last number
               expr = expr.replace(/(\d+(?:\.\d+)?)$/,'m$1');
               expr = expr.replace(/m(\d+(?:\.\d+)?)/g,'(-$1)');
               render();
@@ -279,8 +265,6 @@
             break;
         }
       }
-
-      // keyboard support
       window.addEventListener('keydown', (e)=>{
         if(e.key === 'Enter'){ e.preventDefault(); handleAction('equals'); return; }
         if(e.key === 'Backspace'){ e.preventDefault(); expr = expr.slice(0,-1); render(); return; }
@@ -290,8 +274,6 @@
           e.preventDefault();
         }
       });
-
-      // theme toggle just changes CSS variables (simple)
       let light = false;
       toggleThemeBtn.addEventListener('click', ()=>{
         light = !light;
@@ -315,11 +297,8 @@
           document.documentElement.style.removeProperty('color');
         }
       });
-
-      // initial render
       render();
 
-      // expose a tiny API for debugging in console
       window._calc = {
         getExpression:()=>expr,
         setExpression:(s)=>{expr=String(s);render();},
